@@ -166,7 +166,7 @@ type file struct {
 func (f *file) isTest() bool { return strings.HasSuffix(f.filename, "_test.go") }
 
 func (f *file) lint() {
-	f.lintPackageComment()
+	//f.lintPackageComment()
 	f.lintImports()
 	f.lintBlankImports()
 	f.lintExported()
@@ -523,7 +523,7 @@ func (f *file) lintNames() {
 			f.errorf(id, 0.9, link("http://golang.org/doc/effective_go.html#mixed-caps"), category("naming"), "don't use underscores in Go names; %s %s should be %s", thing, id.Name, should)
 			return
 		}
-		f.errorf(id, 0.8, link(styleGuideBase+"#initialisms"), category("naming"), "%s %s should be %s", thing, id.Name, should)
+		//f.errorf(id, 0.8, link(styleGuideBase+"#initialisms"), category("naming"), "%s %s should be %s", thing, id.Name, should)
 	}
 	checkList := func(fl *ast.FieldList, thing string) {
 		if fl == nil {
@@ -727,7 +727,7 @@ func (f *file) lintTypeDoc(t *ast.TypeSpec, doc *ast.CommentGroup) {
 		return
 	}
 	if doc == nil {
-		f.errorf(t, 1, link(docCommentsLink), category("comments"), "exported type %v should have comment or be unexported", t.Name)
+		//f.errorf(t, 1, link(docCommentsLink), category("comments"), "exported type %v should have comment or be unexported", t.Name)
 		return
 	}
 
@@ -782,7 +782,7 @@ func (f *file) lintFuncDoc(fn *ast.FuncDecl) {
 		name = recv + "." + name
 	}
 	if fn.Doc == nil {
-		f.errorf(fn, 1, link(docCommentsLink), category("comments"), "exported %s %s should have comment or be unexported", kind, name)
+		//f.errorf(fn, 1, link(docCommentsLink), category("comments"), "exported %s %s should have comment or be unexported", kind, name)
 		return
 	}
 	s := fn.Doc.Text()
